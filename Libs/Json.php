@@ -17,7 +17,7 @@
  * 
  */
 
-namespace Sgmendez\Bundle\Json\Libs;
+namespace Sgmendez\Bundle\JsonBundle\Libs;
 
 use BadFunctionCallException;
 use InvalidArgumentException;

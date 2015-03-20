@@ -1,6 +1,6 @@
 <?php
 
-namespace Sgmendez\Bundle\Json\DependencyInjection;
+namespace Sgmendez\Bundle\JsonBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
