@@ -16,9 +16,6 @@
         "php":                      ">=5.4.0",
         "symfony/framework-bundle": ">=2.0.0"
     },
-    "suggest": {
-        "ext-exif": "to conect to CouchBase database"
-    },
     "autoload": {
         "psr-0": { "Sgmendez\\Bundle\\JsonBundle": "" }
     },
