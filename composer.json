@@ -3,7 +3,7 @@
     "type": "symfony-bundle",
     "description": "Symfony2 bundle for json encode and decode",
     "keywords": ["json"],
-    "homepage": "http://sgmendez.github.io/json/",
+    "homepage": "https://github.com/sgmendez/jsonBundle",
     "type": "library",
     "license": "BSD-2-Clause",
     "authors": [
