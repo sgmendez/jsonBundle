@@ -1,0 +1,26 @@
+{
+    "name": "sgmendez/jsonbundle",
+    "type": "symfony-bundle",
+    "description": "Symfony2 bundle for json encode and decode",
+    "keywords": ["json"],
+    "homepage": "http://sgmendez.github.io/json/",
+    "type": "library",
+    "license": "BSD-2-Clause",
+    "authors": [
+        {
+            "name": "Salvador Mendez",
+            "email": "salva@sgmendez.com"
+        }
+    ],
+    "require": {
+        "php":                      ">=5.4.0",
+        "symfony/framework-bundle": ">=2.0.0"
+    },
+    "suggest": {
+        "ext-exif": "to conect to CouchBase database"
+    },
+    "autoload": {
+        "psr-0": { "Sgmendez\\Bundle\\JsonBundle": "" }
+    },
+    "target-dir": "Sgmendez/Bundle/JsonBundle"
+}
