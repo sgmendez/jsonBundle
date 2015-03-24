@@ -32,10 +32,10 @@ json
 }
 ```
 
-Registrar el bundle en el Kernel:
+Register bundle on appKernel:
 
 ```php
-<?php
+
 // app/AppKernel.php
 
 public function registerBundles()
@@ -47,3 +47,42 @@ public function registerBundles()
     );
 }
 ```
+
+## Use
+
+For string JSON data:
+
+```
+php
+
+$json = $this->get('json.parser');
+$a = $json->decode($stringJson);
+
+```
+
+For local file JSON data:
+
+```
+php
+
+$json = $this->get('json.parser');
+$a = $json->decodeFile('file.json');
+
+```
+
+For remote file JSON data:
+
+```
+php
+
+$json = $this->get('json.parser');
+$a = $json->decodeFile('http://ip.jsontest.com/');
+
+```
+
+
+# License
+
+Licensed under the BSD License:
+
+   http://opensource.org/licenses/bsd-license.php
