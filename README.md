@@ -17,7 +17,7 @@ curl -s http://getcomposer.org/installer | php
 And then execute this command to add libary to your project:
 
 ```
-$ composer require sgmendez/jsonBundle
+$ composer require sgmendez/jsonbundle
 ```
 Or require [`sgmendez/json`](http://sgmendez.github.io/json/)
 into your `composer.json` file:
@@ -27,15 +27,15 @@ into your `composer.json` file:
 json
 {
     "require": {
-        "sgmendez/jsonBundle": "*"
+        "sgmendez/jsonbundle": "*"
     }
 }
 ```
 
-Registrar el bundle en el Kernel:
+Register bundle on appKernel:
 
 ```php
-<?php
+
 // app/AppKernel.php
 
 public function registerBundles()
@@ -47,3 +47,42 @@ public function registerBundles()
     );
 }
 ```
+
+## Use
+
+For string JSON data:
+
+```
+php
+
+$json = $this->get('json.parser');
+$a = $json->decode($stringJson);
+
+```
+
+For local file JSON data:
+
+```
+php
+
+$json = $this->get('json.parser');
+$a = $json->decodeFile('file.json');
+
+```
+
+For remote file JSON data:
+
+```
+php
+
+$json = $this->get('json.parser');
+$a = $json->decodeFile('http://ip.jsontest.com/');
+
+```
+
+
+# License
+
+Licensed under the BSD License:
+
+   http://opensource.org/licenses/bsd-license.php

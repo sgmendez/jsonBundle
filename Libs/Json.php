@@ -17,7 +17,7 @@
  * 
  */
 
-namespace Sgmendez\Bundle\Json\Libs;
+namespace Sgmendez\Bundle\JsonBundle\Libs;
 
 use BadFunctionCallException;
 use InvalidArgumentException;
@@ -67,10 +67,10 @@ class Json
         $depthValid = $this->validateType('int', $depth, '$depth');
         $optionsValid = $this->validateType('int', $options, '$options');
         
-        $data = json_decode($dataValid, $assocValid, $depthValid, $optionsValid);
+        $dataReturn = json_decode($dataValid, $assocValid, $depthValid, $optionsValid);
         $this->checkJsonError();
         
-        return $data;
+        return $dataReturn;
     }
     
     /**
@@ -85,24 +85,9 @@ class Json
      */
     public function decodeFile($file, $assoc = true, $depth = 512, $options = 0)
     {
-        set_error_handler(
-                create_function(
-                        '$severity, $message, $file, $line', 'throw new ErrorException($message, $severity, $severity, $file, $line);'
-                )
-        );
+        $jsonData = $this->checkValidFile($file);
         
-        try
-        {
-            $jsonData = file_get_contents($file);
-        }
-        catch (Exception $e)
-        {
-            throw new RuntimeException(sprintf($e->getMessage()));
-        }
-
-        restore_error_handler();
-        
-        if(false === $jsonData)
+        if(false == $jsonData)
         {
             throw new RuntimeException(sprintf('Unable to get file %s', $file));
         }
@@ -300,5 +285,75 @@ class Json
         }
         
         return $codeException;
+    }
+    
+    /**
+     * Simulate browser for curl
+     * 
+     * @param string $url
+     * @return type
+     */
+    private function curlGetRemote($url)
+    {
+        $ch = curl_init();
+        
+        $agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.115 Safari/537.36';
+
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 4);
+        curl_setopt($ch, CURLOPT_USERAGENT, $agent);
+
+        $response = curl_exec($ch);
+
+        curl_close($ch);
+        
+        return $response;
+    }
+    
+    /**
+     * Check if $file is remote or local file
+     * 
+     * @param string $file
+     * @return type
+     */
+    private function checkValidFile($file)
+    {
+        if(filter_var($file, FILTER_VALIDATE_URL) === false)
+        {
+            return $this->getDataFile($file);
+        }
+        
+        return $this->curlGetRemote($file);
+    }
+    
+    /**
+     * Get data from local file
+     * 
+     * @param string $file
+     * @return type
+     * @throws RuntimeException
+     */
+    private function getDataFile($file)
+    {
+        set_error_handler(
+                create_function(
+                        '$severity, $message, $file, $line', 'throw new ErrorException($message, $severity, $severity, $file, $line);'
+                )
+        );
+        
+        try
+        {
+            $jsonData = file_get_contents($file);
+        }
+        catch (Exception $e)
+        {
+            throw new RuntimeException(sprintf($e->getMessage()));
+        }
+
+        restore_error_handler();
+        
+        return $jsonData;
     }
 }
