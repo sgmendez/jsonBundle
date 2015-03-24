@@ -87,7 +87,7 @@ class Json
     {
         $jsonData = $this->checkValidFile($file);
         
-        if(false == $jsonData)
+        if(!$jsonData)
         {
             throw new RuntimeException(sprintf('Unable to get file %s', $file));
         }

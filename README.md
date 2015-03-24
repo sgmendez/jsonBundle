@@ -1,6 +1,12 @@
 JsonBundle
 ===============
 
+[![License](https://poser.pugx.org/sgmendez/jsonbundle/license.svg)](https://packagist.org/packages/sgmendez/jsonbundle)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/ed6e208f-d0ad-4798-bc8c-d50814977ed5/mini.png)](https://insight.sensiolabs.com/projects/ed6e208f-d0ad-4798-bc8c-d50814977ed5)
+[![Latest Stable Version](https://poser.pugx.org/sgmendez/jsonbundle/v/stable.svg)](https://packagist.org/packages/sgmendez/jsonbundle) 
+[![Total Downloads](https://poser.pugx.org/sgmendez/jsonbundle/downloads.svg)](https://packagist.org/packages/sgmendez/jsonbundle) 
+[![Latest Unstable Version](https://poser.pugx.org/sgmendez/jsonbundle/v/unstable.svg)](https://packagist.org/packages/sgmendez/jsonbundle) 
+
 Library [Json](http://sgmendez.github.io/json/) integration Symfony2 bundle.
 
 ## Instalación
@@ -86,3 +92,4 @@ $a = $json->decodeFile('http://ip.jsontest.com/');
 Licensed under the BSD License:
 
    http://opensource.org/licenses/bsd-license.php
+
